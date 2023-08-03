@@ -39,7 +39,7 @@ export function onMouseClick(event, camera, scene, showInfoCard, hideInfoCard, c
                 showInfoCard(nombre);
 
                 // Cambiamos el color del objeto seleccionado
-                SELECTED.material.color.set(0xff0000);
+                SELECTED.material.color.set(0xFFDD47);
             } else {
                 // Hacer clic nuevamente en el objeto seleccionado para deseleccionarlo
                 SELECTED.material.color.set(initColor);

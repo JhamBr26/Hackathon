@@ -8,7 +8,7 @@ const objetos = ['Atencion_docente', 'Auditorio', 'Aula_NP1', 'Aula_NP2', 'Aulas
 
 const loader = new GLTFLoader();
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x252421); // Cambia el color de fondo de la escena a azul
+scene.background = new THREE.Color(0x171819); // Cambia el color de fondo de la escena a azul
 
 const aspect = window.innerWidth / window.innerHeight;
 const frustumSize = 4; // Ajusta este valor según tus necesidades
@@ -26,10 +26,6 @@ camera.position.set(2, 2, 3.5); // Ajusta la posición de la cámara
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 // Aplicar las configuraciones adicionales al renderer
-renderer.physicallyCorrectLights = true;
-renderer.outputEncoding = THREE.sRGBEncoding;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.75;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 document.body.appendChild(renderer.domElement);
@@ -42,25 +38,43 @@ controls.maxPolarAngle = Math.PI / 2;
 controls.update();
 
 // Agregar una luz direccional a la escena
-const light = new THREE.DirectionalLight( 0xffffff, 3 );
-light.position.set( 0.1, 0.5, 0.1 ).normalize();
+const light = new THREE.PointLight(0xffffff, 9, 8, 1);
+light.position.set( 3, 3, -3 );
 scene.add(light);
-// const dl = new THREE.DirectionalLightHelper(light, 2);
+// const dl = new THREE.PointLightHelper(light, 0.5);
 // scene.add(dl)
+
+const light2 = new THREE.PointLight(0xffffff, 9, 8, 1);
+light2.position.set( -3, 3, 3 );
+scene.add(light2);
+const dl2 = new THREE.PointLightHelper(light2, 0.5);
+// scene.add(dl2)
+
+const light3 = new THREE.PointLight(0xffffff, 9, 8, 1);
+light3.position.set( -3, 3, -3 );
+scene.add(light3);
+// const dl3 = new THREE.PointLightHelper(light3, 0.5);
+// scene.add(dl3)
+
+const light4 = new THREE.PointLight(0xffffff, 9, 16, 1);
+light4.position.set( 3, 3, 3 );
+scene.add(light4);
+// const dl4 = new THREE.PointLightHelper(light4, 0.5);
+// scene.add(dl4)
 
 // Agregar el plano base
 const geometry = new THREE.BoxGeometry(10, 10, 10);
-const material = new THREE.MeshBasicMaterial({ color: 0xE6F4C9 });
+const material = new THREE.MeshPhysicalMaterial( { color: 0xD8E9FF } )
 const plano = new THREE.Mesh(geometry, material);
 plano.name = 'Plano'
-plano.position.set(0, -0.1, 0);
-plano.scale.set(0.55, 0.02, 0.55)
+plano.position.set(0, 0, 0);
+plano.scale.set(0.5, 0.01, 0.5)
 scene.add(plano);
 
 loader.load('../models/PrimerPiso.glb', function (gltf) {
     const pared = gltf.scene.children.find((child) => child.name === "Pared");
     if (pared) {
-        pared.material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff, emissive: 0xff000, emissiveIntensity: 0.2 } )
+        pared.material = new THREE.MeshPhysicalMaterial( { color: 0x001657, clearcoat: 1} )
         scene.add(pared);
     } else {
         console.warn('Pared no encontrada en el modelo.');
@@ -76,17 +90,23 @@ loader.load('../models/PrimerPiso.glb', function (gltf) {
         const buildMesh = gltf.scene.children.find((child) => child.name === objeto);
 
         if (buildMesh) {
-            buildMesh.material = new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff, emissive: 0xff000, emissiveIntensity: 0.1 } )
+            const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
+            const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
+
+            buildMesh.material = new THREE.MeshPhysicalMaterial({
+                color: color, // Asignar color aleatorio al material
+                clearcoat: 1
+            });
+
             scene.add(buildMesh);
         } else {
             console.warn(`Objeto "${objeto}" no encontrado en el modelo.`);
         }
     }
 }, undefined, function (error) {
-
     console.error(error);
-
 });
+
 
 // Elemento HTML para mostrar el card con información
 const infoContainer2 = document.createElement("div");
@@ -148,7 +168,6 @@ function animate() {
     requestAnimationFrame(animate);
     // Renderizamos la escena
     controls.update();
-    
     renderer.render(scene, camera);
 }
 

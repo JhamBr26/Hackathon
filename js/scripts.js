@@ -10,7 +10,7 @@ let infoVisible = false;
 
 // Raycaster para detectar colisiones
 const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
+let mouse = new THREE.Vector2();
 const container = document.getElementById('canvas-container');
 const labelRenderer = new CSS2DRenderer()
 labelRenderer.setSize(window.innerWidth, window.innerHeight);

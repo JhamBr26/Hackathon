@@ -3,6 +3,8 @@
 .point {
   position: absolute;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
 }
 
 .point .label {
@@ -30,6 +32,12 @@
   opacity: 1;
 }
 
+.point .text{
+  margin: 0 auto;
+  padding: 15px 0px;
+  color: #FFA500;
+  font-size: 0.6rem;
+}
 .icn {
   width: 1rem;
   height: 1rem;

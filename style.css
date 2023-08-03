@@ -1,0 +1,35 @@
+body {
+    overflow-x: hidden;
+}
+
+.fondo {
+    background-color: #171819;
+}
+
+.canvas {
+    width: 100%;
+    height: 100vh;
+}
+
+.informacion {
+    padding-top: 6rem;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    background: #232527;
+}
+
+#informacion {
+    top: 0;
+    right: 0;
+}
+
+#canvas-container {
+    transition: transform 1s;
+}
+
+.imagen {
+    height: 200px;
+    width: 200px;
+    object-fit: contain;
+}

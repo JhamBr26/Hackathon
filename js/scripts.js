@@ -20,7 +20,7 @@ document.body.appendChild(labelRenderer.domElement);
 export default labelRenderer;
 
 // Función para manejar los clics del mouse
-export function onMouseClick(event, camera, scene, document, controls) {
+export function onMouseClick(event, camera, scene) {
     // Calculamos la posición normalizada del mouse (-1 a 1)
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;

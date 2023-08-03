@@ -11,13 +11,18 @@ body {
     height: 100vh;
 }
 
+.bg-transparent {
+    background-color: transparent !important;
+}
+
 .informacion {
     padding-top: 6rem;
     width: 100%;
     height: 100vh;
-    display: none;
-    background: #232527;
+    display: block;
+    background: #232527d7 ;
 }
+
 
 #informacion {
     top: 0;

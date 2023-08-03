@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { onMouseClick, addMarker} from './scripts';
+import { handleScreenSize } from "./scripts";
 import labelRenderer from "./scripts";
 
 // Array de los objetos 3D seleccionables
@@ -109,32 +110,10 @@ loader.load('../models/PrimerPiso.glb', function (gltf) {
     console.error(error);
 });
 
-let infoVisible = false;
-// Función para mostrar el card con información
-function showInfoCard(nombre) {
-    if (infoVisible == false) {
-        infoVisible = true
-        $('#informacion').toggle('slide', { direction: 'right' }, 1000);
-        $('#canvas-container').css('transform', 'translateX(-20%)');
-    }
-    $("#titulo").text(nombre)
-
-}
-
-// Función para ocultar el card con información
-function hideInfoCard() {
-    if (infoVisible == true) {
-        infoVisible = false
-        $('#informacion').toggle('slide', { direction: 'right' }, 1000);
-        $('#canvas-container').css('transform', 'translateX(0%)');
-    }
-
-}
-
 // Añadimos el evento de clic del mouse al documento
 document.addEventListener('click', (event) => {
     // Llamada a la función onMouseClick pasando las funciones showInfoCard y hideInfoCard
-    onMouseClick(event, camera, scene, showInfoCard, hideInfoCard, controls);
+    onMouseClick(event, camera, scene, controls);
 }, false);
 
 window.addEventListener('resize', function () {
@@ -149,6 +128,7 @@ function animate() {
     // Renderizamos la escena
     controls.update();
     labelRenderer.render(scene, camera);
+    handleScreenSize();
     renderer.render(scene, camera);
 }
 

@@ -11,7 +11,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x252421); // Cambia el color de fondo de la escena a azul
 
 const aspect = window.innerWidth / window.innerHeight;
-const frustumSize = 5; // Ajusta este valor según tus necesidades
+const frustumSize = 4; // Ajusta este valor según tus necesidades
 
 const camera = new THREE.OrthographicCamera(
     frustumSize * aspect / -2,
@@ -22,7 +22,6 @@ const camera = new THREE.OrthographicCamera(
     20
 );
 camera.position.set(2, 2, 3.5); // Ajusta la posición de la cámara
-camera.lookAt(0, 0, 0); // Ajusta la dirección de la cámara
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -46,6 +45,8 @@ controls.update();
 const light = new THREE.DirectionalLight( 0xffffff, 3 );
 light.position.set( 0.1, 0.5, 0.1 ).normalize();
 scene.add(light);
+// const dl = new THREE.DirectionalLightHelper(light, 2);
+// scene.add(dl)
 
 // Agregar el plano base
 const geometry = new THREE.BoxGeometry(10, 10, 10);
@@ -112,9 +113,8 @@ function showHelper() {
 const infoContainer = document.createElement("div");
 infoContainer.style.position = "absolute";
 infoContainer.style.top = "10px";
-infoContainer.style.left = window.innerWidth - 450 + "px"; // Ajusta el valor aquí para determinar el espaciado
+infoContainer.style.left = window.innerWidth - 300 + "px"; // Ajusta el valor aquí para determinar el espaciado
 infoContainer.style.pointerEvents = "none";
-infoContainer.style.width = "30%"
 document.body.appendChild(infoContainer);
 
 // Función para mostrar el card con información
@@ -141,13 +141,14 @@ function hideInfoCard() {
 // Añadimos el evento de clic del mouse al documento
 document.addEventListener('click', (event) => {
     // Llamada a la función onMouseClick pasando las funciones showInfoCard y hideInfoCard
-    onMouseClick(event, camera, scene, showInfoCard, hideInfoCard);
+    onMouseClick(event, camera, scene, showInfoCard, hideInfoCard, controls);
 }, false);
 
 function animate() {
     requestAnimationFrame(animate);
     // Renderizamos la escena
     controls.update();
+    
     renderer.render(scene, camera);
 }
 

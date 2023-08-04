@@ -83,14 +83,14 @@ export function addMarker(scene, name, x, y, z) {
 }
 
 export function hideMarkers() {
-    const divs = document.getElementsByClassName("label");
+    const divs = document.getElementsByClassName("point");
     // Cambia la opacidad de todos los elementos
     for (const div of divs) {
         div.style.opacity = "0"; // Cambia este valor según lo necesites
     }
 }
 export function showMarkers() {
-    const divs = document.getElementsByClassName("label");
+    const divs = document.getElementsByClassName("point");
     // Cambia la opacidad de todos los elementos
     for (const div of divs) {
         div.style.opacity = "1"; // Cambia este valor según lo necesites

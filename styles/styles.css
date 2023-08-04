@@ -44,17 +44,53 @@
 }
 
 #buttonContainer1 {
-  background-color: white;
   position: absolute;
   top: 100px;
   right: 30px;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#buttonContainer1 button {
+  padding: 10px 20px;
+  margin: 5px 0;
+  background-color: #ee502d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#buttonContainer1 button:hover {
+  background-color: #F13A12;
 }
 
 #buttonContainer2 {
-  background-color: white;
   position: absolute;
   top: 150px;
   right: 30px;
   opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#buttonContainer2 button {
+  padding: 10px 20px;
+  margin: 5px 0;
+  background-color: #ee502d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+#buttonContainer2 button:hover {
+  background-color: #F13A12;
 }

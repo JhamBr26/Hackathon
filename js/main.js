@@ -16,7 +16,13 @@ scene.background = new THREE.Color(0x171819); // Cambia el color de fondo de la 
 const container = document.getElementById('canvas-container');
 
 const aspect = container.clientWidth / container.clientHeight;
-const frustumSize = 4; // Ajusta este valor según tus necesidades
+let frustumSize = 0;
+if (window.innerWidth <= 900) { // Cambia 768 al ancho deseado para dispositivos móviles
+    frustumSize = 8; // Ajusta este valor según tus necesidades
+}else{
+    frustumSize = 4; // Ajusta este valor según tus necesidades
+}
+
 
 const camera = new THREE.OrthographicCamera(
     frustumSize * aspect / -2,

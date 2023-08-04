@@ -1,10 +1,43 @@
+:root {
+    --primary-color: #f13a11;
+    --white-color: #ffffff;
+    --dark-color: #171819;
+    --about-bg-color: #f9f9f9;
+
+    --gray-color: #909090;
+    --link-color: #404040;
+    --p-color: #666262;
+
+    --base-font-family: 'Plain', sans-serif;
+    --font-weight-bold: bold;
+    --font-weight-normal: normal;
+    --font-weight-light: 300;
+    --font-weight-thin: 100;
+
+    --h1-font-size: 48px;
+    --h2-font-size: 30px;
+    --h3-font-size: 28px;
+    --h4-font-size: 24px;
+    --h5-font-size: 22px;
+    --h6-font-size: 16px;
+    --p-font-size: 12px;
+    --base-font-size: 16px;
+    --menu-font-size: 14px;
+
+    --border-radius-large: 100%;
+    --border-radius-small: 2px;
+}
+
+
 body {
     overflow-x: hidden;
 }
 
+
 .fondo {
     background-color: #171819;
 }
+
 
 .canvas {
     width: 100%;
@@ -15,8 +48,18 @@ body {
     background-color: transparent !important;
 }
 
+.card-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+
 .informacion {
-    padding-top: 6rem;
+    padding-top: 3rem;
     width: 100%;
     height: 100vh;
     display: block;
@@ -33,7 +76,32 @@ body {
 }
 
 .imagen {
-    /* height: 200px; */
+    height: 200px;
     width: 100%;
     object-fit: contain;
+}
+
+.btnnav {
+    background: var(--primary-color);
+    border-radius: var(--border-radius-small);
+    color: var(--white-color);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.btnnav:hover {
+    color: var(--primary-color);
+}
+
+.btnnav:focus {
+    box-shadow: none;
+}
+
+.btnnav.bordered:hover,
+.btnnav.bordered:focus,
+.btnnav.bg-color:hover,
+.btnnav.bg-color:focus {
+    background: var(--white-color);
+    border-color: transparent;
+    color: var(--primary-color);
 }

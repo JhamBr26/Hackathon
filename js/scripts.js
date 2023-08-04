@@ -124,12 +124,12 @@ function showInfoCard(nombre) {
         infoVisible = true
         $('#informacion').toggle('slide', { direction: 'right' }, 1000);
         if (window.innerWidth > 900) {
-            $('#canvas-container').css('transform', 'translateX(-20%)');
+            $('#canvas-container').css('transform', 'translateX(-15%)');
         } else {
             hideMarkers();
             disableInteraction();
         }
-        
+
     }
     $("#titulo").text(nombre)
 }

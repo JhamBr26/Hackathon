@@ -54,7 +54,7 @@
   align-items: flex-end;
 }
 
-#buttonContainer1 button {
+#buttonContainer1 button, #buttonContainer2 button, #buttonContainer3 button, #buttonContainer4 button{
   padding: 10px 20px;
   margin: 5px 0;
   background-color: #ee502d;
@@ -66,7 +66,7 @@
   transition: background-color 0.3s ease;
 }
 
-#buttonContainer1 button:hover {
+#buttonContainer1 button:hover, #buttonContainer2 button:hover, #buttonContainer3 button:hover, #buttonContainer4 button:hover {
   background-color: #F13A12;
 }
 
@@ -80,18 +80,22 @@
   align-items: flex-end;
 }
 
-#buttonContainer2 button {
-  padding: 10px 20px;
-  margin: 5px 0;
-  background-color: #ee502d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+#buttonContainer3 {
+  position: absolute;
+  top: 200px;
+  right: 30px;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-#buttonContainer2 button:hover {
-  background-color: #F13A12;
+#buttonContainer4 {
+  position: absolute;
+  top: 250px;
+  right: 30px;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }

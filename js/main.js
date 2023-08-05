@@ -559,10 +559,10 @@ changeFloorButton4.addEventListener("click", function (event) {
 });
 
 // Añadimos el evento de clic del mouse al documento
-// document.addEventListener('click', (event) => {
-//     // Llamada a la función onMouseClick pasando las funciones showInfoCard y hideInfoCard
-//     onMouseClick(event, camera, scene, controls);
-// }, false);
+document.addEventListener('click', (event) => {
+    // Llamada a la función onMouseClick pasando las funciones showInfoCard y hideInfoCard
+    onMouseClick(event, camera, scene, controls);
+}, false);
 
 window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -603,6 +603,7 @@ loader.load('../models/PrimerPisoNav.glb', function (gltf) {
     gltf.scene.traverse( node => {
         if(!navMesh && node.isObject3D && node.children && node.children.length > 0) {
             navMesh = node.children[0];
+            navMesh.visible = false;
             pathfinding.setZoneData(ZONE, Pathfinding.createZone(navMesh.geometry));
         }
     })
@@ -611,26 +612,26 @@ loader.load('../models/PrimerPisoNav.glb', function (gltf) {
 
 const raycaster = new THREE.Raycaster();
 const clickMouse = new THREE.Vector2();
-// window.addEventListener('click', event => {
-//     const container = document.getElementById('canvas-container');
-//     const rect = container.getBoundingClientRect();
-//     clickMouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-//     clickMouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-//     // Lanzamos un rayo desde la posición del mouse
-//     raycaster.setFromCamera(clickMouse, camera);
-//     const found = raycaster.intersectObjects(scene.children);
-//     if(found.length > 0) {
-//         let target = found[0].point;
-//         groupId = pathfinding.getGroup(ZONE, agentGroup.position);
-//         const closest = pathfinding.getClosestNode(agentGroup.position, ZONE, groupId);
-//         navpath = pathfinding.findPath(closest.centroid, target, ZONE, groupId);
-//         if(navpath) {
-//             pathfindinghelper.reset();
-//             pathfindinghelper.setPlayerPosition(agentGroup.position);
-//             pathfindinghelper.setTargetPosition(target);
-//             pathfindinghelper.setPath(navpath);
-//         }
-//     }
-// })
+window.addEventListener('click', event => {
+    const container = document.getElementById('canvas-container');
+    const rect = container.getBoundingClientRect();
+    clickMouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    clickMouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    // Lanzamos un rayo desde la posición del mouse
+    raycaster.setFromCamera(clickMouse, camera);
+    const found = raycaster.intersectObjects(scene.children);
+    if(found.length > 0) {
+        let target = found[0].point;
+        groupId = pathfinding.getGroup(ZONE, agentGroup.position);
+        const closest = pathfinding.getClosestNode(agentGroup.position, ZONE, groupId);
+        navpath = pathfinding.findPath(closest.centroid, target, ZONE, groupId);
+        if(navpath) {
+            pathfindinghelper.reset();
+            pathfindinghelper.setPlayerPosition(agentGroup.position);
+            pathfindinghelper.setTargetPosition(target);
+            pathfindinghelper.setPath(navpath);
+        }
+    }
+})
 
 animate();

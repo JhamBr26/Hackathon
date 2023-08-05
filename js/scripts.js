@@ -20,6 +20,7 @@ export default labelRenderer;
 
 // Función para manejar los clics del mouse
 export function onMouseClick(event, camera, scene) {
+    mouse = new THREE.Vector2();
     // Nueva posición segun el div canvas-container
     const container = document.getElementById('canvas-container');
     const rect = container.getBoundingClientRect();

@@ -567,7 +567,7 @@ window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    labelRenderer.set(this.window.innerWidth, this.window.innerHeight);
+    labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
 })
 
 function animate() {

@@ -55,8 +55,10 @@
 }
 
 #buttonContainer1 button, #buttonContainer2 button, #buttonContainer3 button, #buttonContainer4 button{
+  width: 11rem;
+  height: 2.6rem;
   padding: 10px 20px;
-  margin: 5px 0;
+  margin: 5px 13px;
   background-color: #ee502d;
   color: white;
   border: none;

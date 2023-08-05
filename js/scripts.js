@@ -35,7 +35,6 @@ export function onMouseClick(event, camera, scene) {
     if (intersects.length > 0) {
         // Si el rayo intersecta con algún objeto de la escena
         const clickedObject = intersects[0].object;
-        console.log(clickedObject.position)
         if (clickedObject.name !== 'Pared' && clickedObject.name !== 'Base') {
 
             if (SELECTED !== clickedObject) {

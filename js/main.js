@@ -1,16 +1,16 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { onMouseClick, addMarker} from './scripts.js';
+import { onMouseClick, addMarker } from './scripts.js';
 import { handleScreenSize } from "./scripts.js";
 import labelRenderer from "./scripts.js";
 
 // Array de los objetos 3D seleccionables
-const objetos=[{nombre:'Atencion_docente',icono:'teacher.png'},{nombre:'Auditorio',icono:'auditorio.png'},{nombre:'Aula_NP1',icono:'clase.png'},{nombre:'Aula_NP2',icono:'clase.png'},{nombre:'Aulas_1001',icono:'clase.png'},{nombre:'Aulas_1002',icono:'clase.png'},{nombre:'Capilla',icono:'Capilla.png'},{nombre:'Cerseu',icono:'teacher.png'},{nombre:'DGA',icono:'secretary.png'},{nombre:'Direccion_escuela',icono:'secretary.png'},{nombre:'Economia',icono:'secretary.png'},{nombre:'Losa',icono:'teacher.png'},{nombre:'Quiosco',icono:'shop color.png'},{nombre:'SSHH1',icono:'men´s room.png'},{nombre:'SSHH2',icono:'men´s room.png'},{nombre:'USGOM',icono:'secretary.png'},{nombre:'Vestidores',icono:'womens-room.png'}]
+const objetos = [{ nombre: 'Atencion_docente', icono: 'Atencion Docente 1.svg' }, { nombre: 'Auditorio', icono: 'Auditorio.svg' }, { nombre: 'Aula_NP1', icono: 'Clase.svg' }, { nombre: 'Aula_NP2', icono: 'Clase.svg' }, { nombre: 'Aulas_1001', icono: 'Clase.svg' }, { nombre: 'Aulas_1002', icono: 'Clase.svg' }, { nombre: 'Capilla', icono: 'Capilla 1.svg' }, { nombre: 'Cerseu', icono: 'CERSEU.svg' }, { nombre: 'DGA', icono: 'DGA.svg' }, { nombre: 'Direccion_escuela', icono: 'Direccion Escuela.svg' }, { nombre: 'Economia', icono: 'Economia 3.svg' }, { nombre: 'Losa', icono: 'Losa.svg' }, { nombre: 'Quiosco', icono: 'Quiosco.svg' }, { nombre: 'SSHH1', icono: 'SSHH.svg' }, { nombre: 'SSHH2', icono: 'SSHH.svg' }, { nombre: 'USGOM', icono: 'USGOM.svg' }, { nombre: 'Vestidores', icono: 'SSHH.svg' }]
 
-const objetos2=[{nombre:'Aula_Magna',icono:'teacher.png'},{nombre:'Aula_NP1',icono:'auditorio.png'},{nombre:'Aulas_2001',icono:'clase.png'},{nombre:'Aulas_2002',icono:'clase.png'},{nombre:'Aulas_2003',icono:'clase.png'},{nombre:'Catedraticos',icono:'clase.png'},{nombre:'Comedor',icono:'Capilla.png'},{nombre:'Decanato',icono:'teacher.png'},{nombre:'Laboratorio',icono:'secretary.png'},{nombre:'Laboratorios',icono:'secretary.png'},{nombre:'MicroDataCenter',icono:'secretary.png'},{nombre:'SSHH1',icono:'teacher.png'},{nombre:'SSHH2',icono:'shop color.png'},{nombre:'Tercio',icono:'men´s room.png'},{nombre:'Trofeos',icono:'men´s room.png'}]
+const objetos2 = [{ nombre: 'Aula_Magna', icono: 'Clase.svg' }, { nombre: 'Aula_NP1', icono: 'Clase.svg' }, { nombre: 'Aulas_2001', icono: 'Clase.svg' }, { nombre: 'Aulas_2002', icono: 'Clase.svg' }, { nombre: 'Aulas_2003', icono: 'Clase.svg' }, { nombre: 'Catedraticos', icono: 'Catedrático 2.svg' }, { nombre: 'Comedor', icono: 'Comedor 3.svg' }, { nombre: 'Decanato', icono: 'DECANATO.svg' }, { nombre: 'Laboratorio', icono: 'Laboratorio2.svg' }, { nombre: 'Laboratorios', icono: 'Laboratorio2.svg' }, { nombre: 'MicroDataCenter', icono: 'Datacenter1.svg' }, { nombre: 'SSHH1', icono: 'SSHH.svg' }, { nombre: 'SSHH2', icono: 'SSHH.svg' }, { nombre: 'Tercio', icono: 'Tercio 2.svg' }, { nombre: 'Trofeos', icono: 'Trofeo.svg' }]
 
-const objetos3=[{nombre:'AulaMusica',icono:'teacher.png'},{nombre:'DEPASIS',icono:'auditorio.png'},{nombre:'DirEscuelaSist',icono:'clase.png'},{nombre:'DirEscuelaSoft',icono:'clase.png'},{nombre:'Laboratorio1',icono:'clase.png'},{nombre:'Laboratorio2',icono:'clase.png'},{nombre:'Laboratorios1',icono:'Capilla.png'},{nombre:'Laboratorios2',icono:'teacher.png'},{nombre:'Matricula',icono:'secretary.png'},{nombre:'Publicidad',icono:'secretary.png'},{nombre:'Soporte',icono:'secretary.png'},{nombre:'SSHH1',icono:'teacher.png'},{nombre:'SSHH2',icono:'shop color.png'},{nombre:'UNAYOE',icono:'men´s room.png'}]
+const objetos3 = [{ nombre: 'AulaMusica', icono: 'Aula Musica.svg' }, { nombre: 'DEPASIS', icono: 'Departamento de sistemas.svg' }, { nombre: 'DirEscuelaSist', icono: 'DEPIS.svg' }, { nombre: 'DirEscuelaSoft', icono: 'DEPISW.svg' }, { nombre: 'Laboratorio1', icono: 'Laboratorio2.svg' }, { nombre: 'Laboratorio2', icono: 'Laboratorio2.svg' }, { nombre: 'Laboratorios1', icono: 'Laboratorio2.svg' }, { nombre: 'Laboratorios2', icono: 'Laboratorio2.svg' }, { nombre: 'Matricula', icono: 'Matricula.svg' }, { nombre: 'Publicidad', icono: 'Publicidad.svg' }, { nombre: 'Soporte', icono: 'Soporte.svg' }, { nombre: 'SSHH1', icono: 'SSHH.svg' }, { nombre: 'SSHH2', icono: 'SSHH.svg' }, { nombre: 'UNAYOE', icono: 'UNAYOE.svg' }]
 
 const loader = new GLTFLoader();
 const scene = new THREE.Scene();
@@ -23,7 +23,7 @@ const aspect = container.clientWidth / container.clientHeight;
 let frustumSize = 0;
 if (window.innerWidth <= 900) { // Cambia 768 al ancho deseado para dispositivos móviles
     frustumSize = 8; // Ajusta este valor según tus necesidades
-}else{
+} else {
     frustumSize = 4; // Ajusta este valor según tus necesidades
 }
 
@@ -58,19 +58,19 @@ function initLights() {
     scene.add(light);
     // const dl = new THREE.PointLightHelper(light, 0.5);
     // scene.add(dl)
-    
+
     const light2 = new THREE.PointLight(0xffffff, 9, 8, 1);
     light2.position.set(-3, 3, 3);
     scene.add(light2);
     const dl2 = new THREE.PointLightHelper(light2, 0.5);
     // scene.add(dl2)
-    
+
     const light3 = new THREE.PointLight(0xffffff, 9, 8, 1);
     light3.position.set(-3, 3, -3);
     scene.add(light3);
     // const dl3 = new THREE.PointLightHelper(light3, 0.5);
     // scene.add(dl3)
-    
+
     const light4 = new THREE.PointLight(0xffffff, 9, 16, 1);
     light4.position.set(3, 3, 3);
     scene.add(light4);
@@ -143,7 +143,7 @@ function generatePath(glb) {
 */
 
 loader.load('../models/PrimerPiso.glb', function (gltf) {
-    let i=0
+    let i = 0
     for (let objeto of objetos) {
         const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
 
@@ -155,9 +155,9 @@ loader.load('../models/PrimerPiso.glb', function (gltf) {
                 color: color, // Asignar color aleatorio al material
                 clearcoat: 1
             });
-            objetos[i].x=buildMesh.position.x;
-            objetos[i].y=buildMesh.position.y;
-            objetos[i].z=buildMesh.position.z;
+            objetos[i].x = buildMesh.position.x;
+            objetos[i].y = buildMesh.position.y;
+            objetos[i].z = buildMesh.position.z;
             scene.add(buildMesh);
             i++;
         } else {
@@ -226,16 +226,16 @@ function cambiarPrimerPiso() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/PrimerPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -244,9 +244,9 @@ function cambiarPrimerPiso() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos[i].x=buildMesh.position.x;
-                objetos[i].y=buildMesh.position.y;
-                objetos[i].z=buildMesh.position.z;
+                objetos[i].x = buildMesh.position.x;
+                objetos[i].y = buildMesh.position.y;
+                objetos[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -282,16 +282,16 @@ function cambiarSegundoPiso() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/SegundoPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos2) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -300,9 +300,9 @@ function cambiarSegundoPiso() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos2[i].x=buildMesh.position.x;
-                objetos2[i].y=buildMesh.position.y;
-                objetos2[i].z=buildMesh.position.z;
+                objetos2[i].x = buildMesh.position.x;
+                objetos2[i].y = buildMesh.position.y;
+                objetos2[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -338,16 +338,16 @@ function cambiarTercerPiso() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/TercerPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos3) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -356,9 +356,9 @@ function cambiarTercerPiso() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos3[i].x=buildMesh.position.x;
-                objetos3[i].y=buildMesh.position.y;
-                objetos3[i].z=buildMesh.position.z;
+                objetos3[i].x = buildMesh.position.x;
+                objetos3[i].y = buildMesh.position.y;
+                objetos3[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -394,16 +394,16 @@ function todosLosPisos() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/PrimerPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -412,9 +412,9 @@ function todosLosPisos() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos[i].x=buildMesh.position.x;
-                objetos[i].y=buildMesh.position.y;
-                objetos[i].z=buildMesh.position.z;
+                objetos[i].x = buildMesh.position.x;
+                objetos[i].y = buildMesh.position.y;
+                objetos[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -444,16 +444,16 @@ function todosLosPisos() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/SegundoPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos2) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -463,9 +463,9 @@ function todosLosPisos() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos2[i].x=buildMesh.position.x;
-                objetos2[i].y=buildMesh.position.y;
-                objetos2[i].z=buildMesh.position.z;
+                objetos2[i].x = buildMesh.position.x;
+                objetos2[i].y = buildMesh.position.y;
+                objetos2[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -495,16 +495,16 @@ function todosLosPisos() {
             console.warn('Pared no encontrada en el modelo.');
         }
     }, undefined, function (error) {
-    
+
         console.error(error);
-    
+
     });
 
     loader.load('../models/TercerPiso.glb', function (gltf) {
-        let i=0
+        let i = 0
         for (let objeto of objetos3) {
             const buildMesh = gltf.scene.children.find((child) => child.name === objeto.nombre);
-    
+
             if (buildMesh) {
                 const grayScale = Math.random(); // Generar valor de escala de grises aleatorio (entre 0 y 1)
                 const color = new THREE.Color(grayScale, grayScale, grayScale); // Crear color en escala de grises
@@ -514,9 +514,9 @@ function todosLosPisos() {
                     color: color, // Asignar color aleatorio al material
                     clearcoat: 1
                 });
-                objetos3[i].x=buildMesh.position.x;
-                objetos3[i].y=buildMesh.position.y;
-                objetos3[i].z=buildMesh.position.z;
+                objetos3[i].x = buildMesh.position.x;
+                objetos3[i].y = buildMesh.position.y;
+                objetos3[i].z = buildMesh.position.z;
                 scene.add(buildMesh);
                 i++;
             } else {
@@ -531,28 +531,28 @@ function todosLosPisos() {
 
 // Asociar evento de clic al botón
 const changeFloorButton1 = document.getElementById("changeFloorButton1");
-changeFloorButton1.addEventListener("click", function(event) {
+changeFloorButton1.addEventListener("click", function (event) {
     event.stopPropagation(); // Detener la propagación del evento de clic
     cambiarPrimerPiso();
 });
 
 // Asociar evento de clic al botón
 const changeFloorButton2 = document.getElementById("changeFloorButton2");
-changeFloorButton2.addEventListener("click", function(event) {
+changeFloorButton2.addEventListener("click", function (event) {
     event.stopPropagation(); // Detener la propagación del evento de clic
     cambiarSegundoPiso();
 });
 
 // Asociar evento de clic al botón
 const changeFloorButton3 = document.getElementById("changeFloorButton3");
-changeFloorButton3.addEventListener("click", function(event) {
+changeFloorButton3.addEventListener("click", function (event) {
     event.stopPropagation(); // Detener la propagación del evento de clic
     cambiarTercerPiso();
 });
 
 // Asociar evento de clic al botón
 const changeFloorButton4 = document.getElementById("changeFloorButton4");
-changeFloorButton4.addEventListener("click", function(event) {
+changeFloorButton4.addEventListener("click", function (event) {
     event.stopPropagation(); // Detener la propagación del evento de clic
     todosLosPisos();
 });
@@ -567,7 +567,7 @@ window.addEventListener('resize', function () {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    labelRenderer.set(this.window.innerWidth, this.window.innerHeight);
+    labelRenderer.setSize(this.window.innerWidth, this.window.innerHeight);
 })
 
 function animate() {

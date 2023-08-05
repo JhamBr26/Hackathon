@@ -38,6 +38,9 @@ body {
     background-color: #171819;
 }
 
+.nav-link {
+    color: white;
+}
 
 .canvas {
     width: 100%;
@@ -51,6 +54,39 @@ body {
 .card-title {
     font-size: 2.5rem;
     font-weight: bold;
+}
+
+.card-body {
+    width: 80%;
+}
+
+/* Oculta el botón por defecto */
+.boton-cerrar {
+    display: none;
+}
+
+/* Muestra el botón solo en pantallas con un ancho menor a 600px */
+@media (max-width: 700px) {
+    .boton-cerrar {
+        display: flex;
+        background-color: transparent;
+        border: none;
+        color: #171819;
+        position: absolute;
+        top: 5rem;
+        right: 1.5rem;
+        font-size: 1.3rem;
+        outline: none;
+    }
+
+    .boton-cerrar:active {
+        color: #f13a11;
+    }
+
+    .boton-cerrar:focus {
+        border: none;
+        outline: none;
+    }
 }
 
 .card-text {
@@ -69,6 +105,25 @@ body {
 #informacion {
     top: 0;
     right: 0;
+}
+
+#listaAulas {
+    height: 100vh;
+    margin-top: 10rem;
+    top: 0;
+    left: 0;
+}
+
+@media (max-width: 600px) {
+    #listaAulas {
+        margin-top: 3rem;
+    }
+}
+
+#lista {
+    max-height: 60vh;
+    background: #232527d7;
+    overflow: hidden;
 }
 
 #canvas-container {
@@ -104,4 +159,44 @@ body {
     background: var(--white-color);
     border-color: transparent;
     color: var(--primary-color);
+}
+
+.horario {
+    height: 100vh;
+}
+
+.botonLista {
+    cursor: pointer;
+    outline: none;
+
+}
+
+.botonLista:hover {
+    background: var(--white-color);
+}
+
+.btnnav.bordered:focus {
+    background-color: var(--primary-color);
+}
+
+.btndesplazamiento {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.btndesplazamiento:active {
+    outline: none;
+    background-color: #f13a11;
+}
+
+.btndesplazamiento:focus {
+    outline: none;
+}
+
+.data {
+    font-size: 1rem;
 }

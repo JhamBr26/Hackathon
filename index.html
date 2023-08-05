@@ -34,12 +34,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-lg-auto">
-                    <li class="nav-item mt-2">
-                        <a href="#mapa" class="nav-link smoothScroll">Mapa</a>
+                    <li class="">
+                        <a href=# class="nav-link smoothScroll" id="btnmapa">Mapa</a>
                     </li>
 
-                    <li class="nav-item mt-2">
-                        <a href="#about" class="nav-link smoothScroll">Horarios</a>
+                    <li class="">
+                        <a href=# class="nav-link smoothScroll" id="btnhorarios">Horarios</a>
                     </li>
                     <li class="nav-item">
                         <input class="form-control mt-0" type="search" placeholder="Buscar..." aria-label="Search">
@@ -47,76 +47,192 @@
                     <li class="nav-item">
                         <a class="btn btnnav bg-color aos-init aos-animate"><i class="fa fa-search"></i></a>
                     </li>
-
-                    <!--
-                    <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">Servicios</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Facultad</a>
-                    </li>
-                    -->
                 </ul>
-
-                <!-- <ul class="social-icon ml-lg-3">
-                    <li><a href="https://fb.com/tooplate" class="fa fa-facebook"></a></li>
-                    <li><a href="#" class="fa fa-twitter"></a></li>
-                    <li><a href="#" class="fa fa-instagram"></a></li>
-                </ul> -->
             </div>
 
         </div>
     </nav>
     <!-- MAPA -->
+    <div id="maincarousel" class="carousel slide" data-ride="carousel" data-bs-interval="false">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <section class="row justify-content-center align-items-center position-relative fondo" id="mapa">
+                    <div class="canvas col-12 pe-0" id="canvas-container"></div>
+                    <div id="listaAulas"
+                        class="informacion col-4 col-md-2 position-absolute flex-column pe-0 bg-transparent"
+                        style="display: none;">
+                        <button id="arriba" class="btndesplazamiento col-12"><i class="fa fa-chevron-up"></i></button>
 
-    <section class="row justify-content-center align-items-center position-relative fondo" id="mapa">
-        <div class="canvas col-12 pe-0" id="canvas-container"></div>
-        <div id="buttonContainer1">
-            <button id="changeFloorButton1">Primer Piso</button>
-        </div>
-        <div id="buttonContainer2">
-            <button id="changeFloorButton2">Segundo Piso</button>
-        </div>
-        <div id="buttonContainer3">
-            <button id="changeFloorButton3">Tercer Piso</button>
-        </div>
-        <div id="buttonContainer4">
-            <button id="changeFloorButton4">Todos los pisos</button>
-        </div>
-        <div class="informacion col-12 col-md-4 position-absolute flex-column pe-0" id="informacion"
-            style="display: none;">
-            <div class="row justify-content-center">
-                <div class="card align-items-center bg-transparent">
-                    <img src="https://images.theconversation.com/files/349727/original/file-20200727-37-592phd.jpg?ixlib=rb-1.1.0&rect=359%2C159%2C4967%2C3386&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
-                        class="rounded card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-title text-white" id="titulo"></p>
-                        <p class="card-text text-muted">Salón de clases de pregrado ubicado en el antiguo pabellon</p>
-                        <h3 class="card-text text-white mb-1">Disponibilidad actual</h3>
-                        <div class="row">
-                            <div class="col-4">
-                                <ul class="list-group list-group-flush text-muted">
-                                    <li class="list-group-item bg-transparent">Curso</li>
-                                    <li class="list-group-item bg-transparent">Docente</li>
-                                    <li class="list-group-item bg-transparent">Horario</li>
-                                </ul>
-                            </div>
-                            <div class="col-8">
-                                <ul class="list-group list-group-flush text-white">
-                                    <li class="list-group-item bg-transparent">Inteligencia Artificial
-                                    </li>
-                                    <li class="list-group-item bg-transparent">Ing. Maguiña</li>
-                                    <li class="list-group-item bg-transparent">09:00 - 12:00</li>
-                                </ul>
+                        <ul class="list-group list-group-flush fondo" id="lista">
+
+                        </ul>
+                        <button id="abajo" class="btndesplazamiento col-12"><i class="fa fa-chevron-down"></i></button>
+                    </div>
+
+                    <div id="buttonContainer1">
+                        <button id="changeFloorButton1" class="btnPiso">Primer Piso</button>
+                    </div>
+                    <div id="buttonContainer2">
+                        <button id="changeFloorButton2" class="btnPiso">Segundo Piso</button>
+                    </div>
+                    <div id="buttonContainer3">
+                        <button id="changeFloorButton3" class="btnPiso">Tercer Piso</button>
+                    </div>
+                    <div id="buttonContainer4">
+                        <button id="changeFloorButton4" class="btnPiso">Todos los pisos</button>
+                    </div>
+
+                    <div class="informacion col-12 col-md-4 position-absolute flex-column pe-0" id="informacion"
+                        style="display: none;">
+
+                        <div class="row justify-content-center">
+                            <div class="card align-items-center bg-transparent">
+                                <img src="https://images.theconversation.com/files/349727/original/file-20200727-37-592phd.jpg?ixlib=rb-1.1.0&rect=359%2C159%2C4967%2C3386&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip"
+                                    class="rounded card-img-top" alt="...">
+                                <div class="card-body mb-0">
+                                    <p class="card-title text-white" id="titulo"></p>
+
+                                    <p class="card-text text-white mb-1">Disponibilidad actual</p>
+                                    <div class="row ">
+                                        <div class="col-5">
+                                            <ul class="list-group list-group-flush text-muted ps-0">
+                                                <li class="list-group-item bg-transparent">Curso</li>
+                                                <li class="list-group-item bg-transparent">Prof.</li>
+                                                <li class="list-group-item bg-transparent">Horario</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-7">
+                                            <ul class="list-group list-group-flush text-white text-data">
+                                                <li class="list-group-item bg-transparent">PROBABILIDADES
+                                                </li>
+                                                <li class="list-group-item bg-transparent">Ing. Maguiña</li>
+                                                <li class="list-group-item bg-transparent">09:00 - 12:00</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <a href="#" class="btn custom-btn bg-color mt-0 align-self-center">Generar
+                                    indicaciones</a>
                             </div>
                         </div>
+                        <button class="boton-cerrar"><i class="fa fa-window-close"></i></button>
                     </div>
-                    <a href="#" class="btn custom-btn bg-color mt-3">Generar indicaciones</a>
-                </div>
+                </section>
+            </div>
+            <div class="carousel-item">
+                <section class="schedule section horario" id="schedule">
+                    <div class="container ">
+                        <div class="row">
+
+                            <div class="col-lg-12 col-12 text-center">
+                                <h6 data-aos="fade-up">Horario Actual</h6>
+
+                                <h2 class="text-white" id="horarioAulaSelect" data-aos="fade-up" data-aos-delay="200">AP
+                                    - Aula 101</h2>
+                            </div>
+
+                            <div class="col-lg-12 py-5 col-md-12 col-12">
+                                <table class="table table-bordered table-responsive schedule-table table-hover"
+                                    data-aos="fade-up" data-aos-delay="300">
+
+                                    <thead class="thead-light">
+                                        <th><i class="fa fa-calendar"></i></th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miercoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                    </thead>
+
+                                    <tbody class="data-id">
+                                        <tr>
+                                            <td><small>08:00 - 10:00</small></td>
+                                            <td>
+                                                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                                                <span>Gamarra Moreno, Juan</span>
+                                            </td>
+                                            <td>
+                                                <strong>SISTEMAS EMPRESARIALES</strong>
+                                                <span>Galindo Huayllani, Jose</span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>PROBABILIDADES</strong>
+                                                <span>Coral Ygnacio, Marco</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><small>10:00 - 12:00</small></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                                                <span>Gamarra Moreno, Juan</span>
+                                            </td>
+                                            <td>
+                                                <strong>SISTEMAS EMPRESARIALES</strong>
+                                                <span>Galindo Huayllani, Jose</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><small>12:00 - 14:00</small></td>
+                                            <td></td>
+                                            <td>
+                                                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                                                <span>Gamarra Moreno, Juan</span>
+                                            </td>
+                                            <td>
+                                                <strong>PROBABILIDADES</strong>
+                                                <span>Coral Ygnacio, Marco</span>
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                <strong>PROBABILIDADES</strong>
+                                                <span>Coral Ygnacio, Marco</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><small>14:00 - 16:00</small></td>
+                                            <td>
+                                                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                                                <span>Gamarra Moreno, Juan</span>
+                                            </td>
+                                            <td>
+
+                                            </td>
+                                            <td>
+                                                <strong>SISTEMAS EMPRESARIALES</strong>
+                                                <span>Galindo Huayllani, Jose</span>
+                                            </td>
+                                            <td></td>
+
+                                            <td></td>
+                                            <td>
+                                                <strong>INTELIGENCIA ARTIFICIAL</strong>
+                                                <span>Gamarra Moreno, Juan</span>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
+
 
     <!--
     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
@@ -309,114 +425,7 @@
         </div>
     </section>
 
-    <section class="schedule section" id="schedule">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12 text-center">
-                    <h6 data-aos="fade-up">our weekly GYM schedules</h6>
-
-                    <h2 class="text-white" data-aos="fade-up" data-aos-delay="200">Workout Timetable</h2>
-                </div>
-
-                <div class="col-lg-12 py-5 col-md-12 col-12">
-                    <table class="table table-bordered table-responsive schedule-table" data-aos="fade-up"
-                        data-aos-delay="300">
-
-                        <thead class="thead-light">
-                            <th><i class="fa fa-calendar"></i></th>
-                            <th>Mon</th>
-                            <th>Tue</th>
-                            <th>Wed</th>
-                            <th>Thu</th>
-                            <th>Fri</th>
-                            <th>Sat</th>
-                        </thead>
-
-                        <tbody>
-                            <tr>
-                                <td><small>7:00 am</small></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                                <td>
-                                    <strong>Power Fitness</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <strong>Yoga Section</strong>
-                                    <span>7:00 am - 9:00 am</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>9:00 am</small></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                                <td>
-                                    <strong>Areobic</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>8:00 am - 9:00 am</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>11:00 am</small></td>
-                                <td></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>11:00 am - 2:00 pm</span>
-                                </td>
-                                <td>
-                                    <strong>Areobic</strong>
-                                    <span>11:30 am - 3:30 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Body work</strong>
-                                    <span>11:50 am - 5:20 pm</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><small>2:00 pm</small></td>
-                                <td>
-                                    <strong>Boxing</strong>
-                                    <span>2:00 pm - 4:00 pm</span>
-                                </td>
-                                <td>
-                                    <strong>Power lifting</strong>
-                                    <span>3:00 pm - 6:00 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Cardio</strong>
-                                    <span>6:00 pm - 9:00 pm</span>
-                                </td>
-                                <td></td>
-                                <td>
-                                    <strong>Crossfit</strong>
-                                    <span>5:00 pm - 7:00 pm</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </section>
+    
 
     <section class="contact section" id="contact">
         <div class="container">
@@ -521,7 +530,6 @@
         </div>
     </div>
     -->
-
     <!-- SCRIPTS -->
     <script type="module" src="js/main.js"></script>
     <script src="js/jquery.min.js"></script>

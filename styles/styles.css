@@ -54,22 +54,30 @@
   align-items: flex-end;
 }
 
-#buttonContainer1 button, #buttonContainer2 button, #buttonContainer3 button, #buttonContainer4 button{
+.btnPiso {
   width: 11rem;
   height: 2.6rem;
   padding: 10px 20px;
   margin: 5px 13px;
-  background-color: #ee502d;
+  background-color: #232527d7;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease;
+  outline: none;
 }
 
-#buttonContainer1 button:hover, #buttonContainer2 button:hover, #buttonContainer3 button:hover, #buttonContainer4 button:hover {
-  background-color: #F13A12;
+.btnPiso:hover {
+  background-color: white;
+  color: black;
+}
+
+.btnPiso:focus {
+  background-color: #ee502d;
+  color: white;
+  outline: none;
 }
 
 #buttonContainer2 {
@@ -100,4 +108,23 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+}
+
+#buttonContainer6 {
+  position: absolute;
+  top: 500px;
+  right: 30px;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.naranja {
+  background-color: #ee502d;
+  outline: none;
+}
+
+.text-data {
+  font-size: 0.9rem;
 }

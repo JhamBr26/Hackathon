@@ -20,6 +20,7 @@ export default labelRenderer;
 
 // Función para manejar los clics del mouse
 export function onMouseClick(event, camera, scene) {
+    mouse = new THREE.Vector2();
     // Nueva posición segun el div canvas-container
     const container = document.getElementById('canvas-container');
     const rect = container.getBoundingClientRect();
@@ -35,7 +36,6 @@ export function onMouseClick(event, camera, scene) {
     if (intersects.length > 0) {
         // Si el rayo intersecta con algún objeto de la escena
         const clickedObject = intersects[0].object;
-        console.log(clickedObject.position)
         if (clickedObject.name !== 'Pared' && clickedObject.name !== 'Base') {
 
             if (SELECTED !== clickedObject) {
@@ -121,6 +121,7 @@ function showInfoCard(nombre) {
     if (infoVisible == false) {
         infoVisible = true
         $('#informacion').toggle('slide', { direction: 'right' }, 1000);
+        $('#listaAulas').hide('slide', { direction: 'left' }, 1000)
         if (window.innerWidth > 900) {
             $('#canvas-container').css('transform', 'translateX(-15%)');
         } else {
@@ -130,6 +131,7 @@ function showInfoCard(nombre) {
 
     }
     $("#titulo").text(nombre)
+    $("#horarioAulaSelect").text(nombre)
 }
 
 // Función para ocultar el card con información
@@ -137,6 +139,8 @@ function hideInfoCard() {
     if (infoVisible == true) {
         infoVisible = false
         $('#informacion').toggle('slide', { direction: 'right' }, 1000);
+        if (!$('#changeFloorButton4').hasClass('naranja')) $('#listaAulas').toggle('slide', { direction: 'left' }, 1000);
+
         if (window.innerWidth > 900) {
             $('#canvas-container').css('transform', 'translateX(0%)');
         } else {
@@ -149,3 +153,4 @@ function hideInfoCard() {
 
 // Llama a la función cuando se carga la página y cuando cambia el tamaño de la ventana
 window.addEventListener('resize', handleScreenSize);
+
